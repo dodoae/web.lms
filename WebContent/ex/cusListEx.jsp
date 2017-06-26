@@ -49,7 +49,7 @@
 	<jsp:include page="/common/category.jsp" flush="false" />
 	<form class="navbar-form navbar-left" role="search">
 		<a href="cusWriteEx.jsp"><input type="button" class="btn btn-info" value="거래처 등록"></a> 
-		<input type="button" class="btn btn-success"	value="거래처 수정" id="cusUpdate"></a> 
+		
 		<a href="cusDeleteEx.jsp"><input type="button" class="btn btn-primary" value="거래처 삭제" id="cusDelete" ></a>
 	</form>
 	<form class="navbar-form navbar-right" role="search">

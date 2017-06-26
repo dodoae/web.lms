@@ -39,7 +39,8 @@
 									<input class="form-control" placeholder="Password"
 										name="adPass" id="adPass" type="password">
 								</div>
-								<input type="button" id="adminLogin" class="btn btn-lg btn-success btn-block" value="거래처 삭제">
+								<input type="button" id="adminLogin" class="btn btn-lg btn btn-primary" value="삭제">
+								<input type="button" id="adminLogin" class="btn btn-lg btn btn-success" value="취소" onclick="document.location.href='cusListEx.jsp?pageNum=<%=pageNum%>'">
 							</fieldset>
 						</form>
 					</div>

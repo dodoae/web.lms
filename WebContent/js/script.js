@@ -43,10 +43,10 @@ $(document).ready(function(){
 	});
 	
 	// 거래처 수정
-	$("#cusUpdate").on("click",function(){
+	$("#cusDelete").on("click",function(){
 		var check=$(this).is(":checked");
 		if(check==false){
-			alert("수정할 거래처를 체크해주세요.");
+			alert("삭제할 거래처를 체크해주세요.");
 		}else{
 			
 		}
