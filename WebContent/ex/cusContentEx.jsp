@@ -35,38 +35,45 @@
 	<jsp:include page="/common/category.jsp" flush="false" />
 	<center>
 		<form>
-			<table width="650" border="1" cellspacing="0" cellpadding="0"
-				align="center">
-				<tr height="30">
-					<td align="center" width="125">거래처 코드</td>
-					<td align="center" width="125" align="center"><%=vo.getCusCode()%></td>
-					<td align="center" width="125">거래처</td>
-					<td align="center" width="125" align="center"><%=vo.getCusName()%></td>
-				</tr>
-				<tr height="30">
-					<td align="center" width="125">대표자</td>
-					<td align="center" width="375" align="center"><%=vo.getCusRep()%></td>
-					<td align="center" width="125">사업자 번호</td>
-					<td align="center" width="375" align="center"><%=vo.getLicenseNum()%></td>
-				</tr>
-				<tr height="30">
-					<td align="center" width="125">전화번호</td>
-					<td align="center" width="375" colspan="3"><%=vo.getCusNumber()%></td>
+			<table class="form-group">
+				<tr>
+				<td><label>거래처 코드</label></td><td><input type="text" class="form-control"
+				value="<%=vo.getCusCode()%>" readonly="readonly"></td>
 				</tr>
 				<tr>
-					<td align="center" width="125">주소</td>
-					<td align="center" width="375" colspan="3"><%=vo.getCusAddress()%></td>
+				<td><label>거래처명</label></td><td><input type="text" class="form-control"
+				value="<%=vo.getCusName()%>"></td>
 				</tr>
-				<td align="center" width="125">등록일</td>
-					<td align="center" width="125" align="center" colspan="3"><%= sdf.format(vo.getReg_date())%></td>
+				<tr>
+				<td><label>사업자 번호</label></td><td><input type="text" class="form-control"
+				value="<%=vo.getLicenseNum()%>"></td>
+				</tr>
+				<tr>
+				<td><label>대표자</label></td><td><input type="text" class="form-control"
+				value="<%=vo.getCusRep()%>"></td>
+				</tr>
+				<tr>
+				<td><label>전화번호</label></td><td><input type="text" class="form-control"
+				value="<%=vo.getCusNumber()%>"></td>
+				</tr>
+				<tr>
+				<td><label>주소</label></td><td><input type="text" class="form-control"
+				value="<%=vo.getCusAddress()%>"></td>
+				</tr>
+				<tr>
+				<td><label>등록일</label></td><td><input type="text" class="form-control"
+				value="<%= sdf.format(vo.getReg_date())%>"></td>
+				</tr>
+				
 				<tr height="30">
-					<td colspan="4" align="center"><input type="button"
+					<td colspan="4" align="center"><input type="button" class="btn btn-success"
 						value="거래처 수정"
 						onclick="document.location.href='cusUpdateEx.jsp?num=<%=vo.getNum()%>&pageNum=<%=pageNum%>'">
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="거래처 삭제"
-						onclick="document.location.href='cusDeleteEx.jsp?num=<%=vo.getNum()%>&pageNum=<%=pageNum%>'">
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="거래처 목록"
+						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" class="btn btn-info" value="거래처 목록"
 						onclick="document.location.href='cusListEx.jsp?pageNum=<%=pageNum%>'">
+						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" class="btn btn-primary" value="거래처 삭제"
+						onclick="document.location.href='cusDeleteEx.jsp?num=<%=vo.getNum()%>&pageNum=<%=pageNum%>'">
+						
 					</td>
 				</tr>
 			</table>
