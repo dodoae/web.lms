@@ -62,7 +62,7 @@
 				</tr>
 				<tr>
 				<td><label>등록일</label></td><td><input type="text" class="form-control"
-				value="<%= sdf.format(vo.getReg_date())%>"></td>
+				value="<%= sdf.format(vo.getReg_date())%>" readonly="readonly"></td>
 				</tr>
 				
 				<tr height="30">
