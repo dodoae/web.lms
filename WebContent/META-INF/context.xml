@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+	<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver"
+		maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/mysql"
+		password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/test"
+		username="root" />
+</Context>

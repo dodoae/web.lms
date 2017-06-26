@@ -1,0 +1,10 @@
+.panel-body {
+  height: 350px;
+  overflow-y: scroll;
+}
+table {
+	width= 100%;
+}
+nonCustomer {
+	font-size: 50px;
+}

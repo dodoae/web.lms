@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Logistic Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="cusList.html">LMS</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">기초
+							등록<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li id="cus"><a href="cusList.html">거래처 확인</a></li>
+							<li><a href="wareList.html">창고 확인</a></li>
+							<li><a href="itemList.html">품목 확인</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">생산/외주
+							관리<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="warehousingList.html">입고 내역</a></li>
+							<li><a href="produceList.html">구매 내역</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">시즌
+							아웃 상품<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="seasonList.html">시즌 아웃 상품 조회</a></li>
+							<li><a href="wareList.html">창고 이동</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<form>
+		<div class="form-group">
+			<label>입고 일자</label> 
+			<input type="text" class="form-control" placeholder="입고 일자"> 
+			<label>담당자</label> <input type="text" class="form-control" placeholder="담당자"> 
+			<label>입고 창고</label> 
+			<input type="text" class="form-control" placeholder="입고 창고">
+			<label>거래처</label> 
+			<input type="text" class="form-control" placeholder="거래처">
+			<label>납기일</label> 
+			<input type="text" class="form-control" placeholder="납기일"> 
+			<label>품목 코드</label> <input type="text" class="form-control" placeholder="품목 코드">
+			<label>품목 명</label><input type="text" class="form-control" placeholder="품목 명"> 
+			<label>규격</label> <input type="text" class="form-control" placeholder="규격">
+			<label>수량</label> <input type="text" class="form-control" placeholder="수량">
+			<label>단가</label> <input type="text" class="form-control" placeholder="단가">
+		</div>
+
+		<a href="warehousingList.html"><input type="button"
+			class="btn btn-default" value="등록"></a>
+	</form>
+
+</body>
+</html>
