@@ -19,66 +19,60 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-<jsp:include page="/common/category.jsp" flush="false"/>
-	
-	<!-- 거래처 등록 화면 -->
-	<div class="container">
-		<center>
-			<form method="post" name="writeform" action="<%=request.getContextPath() %>/CustomerController?cmd=insertCustomer">
-				<input type="hidden" name="num" value="<%=num%>"> 
-				<table width="800" border="0" cellspacing="0" cellpadding="0" align="center">
-					<tr>
-						<td align="right" colspan="2"><a href="cusListEx.jsp"> 거래처 목록</a></td>
-					</tr>
-					<tr>
-						<td width="70" align="center">거래처 코드</td>
-						<td width="330" align="left">
-						<input type="text" size="10" maxlength="10" name="cusCode"></td>
-					</tr>
-					<tr>
-						<td width="70" align="center">거래처</td>
-						<td width="330" align="left">
-							<%
-								if (request.getParameter("num") == null) {
-							%> <input type="text"
-							size="40" maxlength="50" name="cusName" align="left">
-						</td>
+	<jsp:include page="/common/category.jsp" flush="false" />
+	<center>
+		<!-- 거래처 등록 화면 -->
+		<form method="post" name="writeform"
+			action="<%=request.getContextPath() %>/CustomerController?cmd=insertCustomer">
+			<input type="hidden" name="num" value="<%=num%>">
+			<table class="form-group">
+				<tr>
+					<td><label>거래처 코드</label></td><td><input type="text" class="form-control" maxlength="10"
+						name="cusCode"></td>
+				</tr>
+				<tr>
+					<td><label>거래처명</label></td>
+					<td>
 						<%
+								if (request.getParameter("num") == null) {
+							%> <input type="text" class="form-control" maxlength="20"
+						name="cusName" align="left">
+					</td>
+					<%
 							} 
 						%>
-						
-					</tr>
-					<tr>
-						<td width="70" align="center">사업자 번호</td>
-						<td width="330" align="left"><input type="text" size="40" maxlength="30"
-							name="licenseNum"></td>
-					</tr>
-					<tr>
-						<td width="70" align="center">대표자</td>
-						<td width="330" align="left"><input type="text"
-							size="40" maxlength="50" name="cusRep" align="left">
-						</td>
-					</tr>
-					<tr>
-						<td width="70" align="center">전화번호</td>
-						<td width="330" align="left"><input type="text" size="40"
-							maxlength="15" name="cusNumber"></td>
-					</tr>
-					<tr>
-						<td width="70" align="center">주소</td>
-						<td width="330" align="left"><input type="text" size="40"
-							maxlength="50" name="cusAddress"></td>
-					</tr>
-					<tr>
-						<td colspan=2 align="center"><input id="writing"
-							type="submit" value="거래처 등록"> <input type="reset"
-							value="다시작성"> <input type="button" value="거래처 보기"
-							OnClick="window.location.href='cusListEx.jsp'"></td>
-					</tr>
-				</table>
-			</form>
-		</center>
-		</div>
+				</tr>
+				<tr>
+					<td><label>사업자 번호</label></td>
+					<td><input type="text" class="form-control" maxlength="30"
+						name="licenseNum"></td>
+				</tr>
+				<tr>
+					<td><label>대표자</label></td>
+					<td width="330" align="left"><input type="text"
+						class="form-control" maxlength="20" name="cusRep"></td>
+				</tr>
+				<tr>
+					<td><label>전화번호</label></td>
+					<td><input type="text" class="form-control" maxlength="15"
+						name="cusNumber"></td>
+				</tr>
+				<tr>
+					<td><label>주소</label></td>
+					<td><input type="text" class="form-control" maxlength="50"
+						name="cusAddress"></td>
+				</tr>
+				<tr height="50">
+					<td colspan="4" align="center"><input id="writing"
+						type="submit" class="btn btn-success" value="거래처 등록"> <input
+						type="reset" class="btn btn-default" value="다시작성"> <input
+						type="button" class="btn btn-info" value="거래처 목록"
+						OnClick="window.location.href='cusListEx.jsp'">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</center>
 </body>
 </html>
 

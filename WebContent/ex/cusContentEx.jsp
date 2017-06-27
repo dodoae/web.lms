@@ -42,32 +42,32 @@
 				</tr>
 				<tr>
 				<td><label>거래처명</label></td><td><input type="text" class="form-control"
-				value="<%=vo.getCusName()%>"></td>
+				maxlength="20" value="<%=vo.getCusName()%>"></td>
 				</tr>
 				<tr>
 				<td><label>사업자 번호</label></td><td><input type="text" class="form-control"
-				value="<%=vo.getLicenseNum()%>"></td>
+				maxlength="30" value="<%=vo.getLicenseNum()%>"></td>
 				</tr>
 				<tr>
 				<td><label>대표자</label></td><td><input type="text" class="form-control"
-				value="<%=vo.getCusRep()%>"></td>
+				maxlength="20" value="<%=vo.getCusRep()%>"></td>
 				</tr>
 				<tr>
 				<td><label>전화번호</label></td><td><input type="text" class="form-control"
-				value="<%=vo.getCusNumber()%>"></td>
+				maxlength="15" value="<%=vo.getCusNumber()%>"></td>
 				</tr>
 				<tr>
-				<td><label>주소</label></td><td><input type="text" class="form-control"
-				value="<%=vo.getCusAddress()%>"></td>
+				<td><label>주소</label></td><td><input type="text" class="form-control" maxlength="50"
+				maxlength="50" value="<%=vo.getCusAddress()%>"></td>
 				</tr>
 				<tr>
 				<td><label>등록일</label></td><td><input type="text" class="form-control"
 				value="<%= sdf.format(vo.getReg_date())%>" readonly="readonly"></td>
 				</tr>
 				
-				<tr height="30">
-					<td colspan="4" align="center"><input type="button" class="btn btn-success"
-						value="거래처 수정"
+				<tr height="50">
+					<td colspan="4" align="center">
+					<input type="button" class="btn btn-success" value="거래처 수정"
 						onclick="document.location.href='cusUpdateEx.jsp?num=<%=vo.getNum()%>&pageNum=<%=pageNum%>'">
 						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" class="btn btn-info" value="거래처 목록"
 						onclick="document.location.href='cusListEx.jsp?pageNum=<%=pageNum%>'">
