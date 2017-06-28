@@ -31,7 +31,7 @@
 						<h3 class="panel-title">Please Sign In</h3>
 					</div>
 					<div class="panel-body">
-						<form method="POST" role="form">
+						<form method="POST">
 							<fieldset>
 								<div class="form-group">
 									<input class="form-control" placeholder="id" id="adID" name="adID"
@@ -46,7 +46,8 @@
 										value="Remember Me">Remember Me
 									</label>
 								</div>
-								<input type="button" id="adminLogin" class="btn btn-lg btn-success btn-block" value="Login">
+								<input type="button" id="adminLogin" class="btn btn-lg btn-success btn-block" value="Sign in">
+								<input type="button" id="adminJoin" class="btn btn-lg btn btn-info btn-block" value="Sign up" onclick="document.location.href='member/insertMember.jsp'">
 							</fieldset>
 						</form>
 					</div>

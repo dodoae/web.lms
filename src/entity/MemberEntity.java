@@ -42,13 +42,12 @@ public class MemberEntity {
 			PreparedStatement pstmt;
 //			con = DriverManager.getConnection(url, user, pass);
 			con = ds.getConnection();
-			String query = "INSERT INTO tb_member(memID, name, pwd, phone, address) values(?,?,?,?,?)";
+			String query = "INSERT INTO tb_member(memID, name, pwd, phone) values(?,?,?,?)";
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, vo.getMemID());
 			pstmt.setString(2, vo.getName());
 			pstmt.setString(3, vo.getPwd());
 			pstmt.setString(4, vo.getPhone());
-			pstmt.setString(5, vo.getAddress());
 
 			idCheck(vo);
 			System.out.println("insertMember : " + check);
@@ -150,7 +149,6 @@ public class MemberEntity {
 		String memPwd = "";
 		String name = "";
 		String phone = "";
-		String address = "";
 
 		System.out.println("MemberEntity :: selectMember");
 
@@ -168,13 +166,11 @@ public class MemberEntity {
 				memPwd = rs.getString("pwd");
 				name = rs.getString("name");
 				phone = rs.getString("phone");
-				address = rs.getString("address");
 				System.out.println("가져오기 성공");
 				System.out.println("memID : " + memID);
 				System.out.println("memPwd : " + memPwd);
 				System.out.println("name : " + name);
 				System.out.println("phone : " + phone);
-				System.out.println("address : " + address);
 				vo.setResult(1);
 			}
 			if(vo.getResult()==1) {
@@ -182,7 +178,6 @@ public class MemberEntity {
 				vo.setPwd(memPwd);
 				vo.setName(name);
 				vo.setPhone(phone);
-				vo.setAddress(address);
 			} else {
 				System.out.println("조회 실패");
 			}
@@ -198,14 +193,13 @@ public class MemberEntity {
 		try {
 			PreparedStatement pstmt;
 			con = ds.getConnection();
-			String query = "UPDATE tb_member set name=?, pwd=?, phone=?, address=? where memID=?";
+			String query = "UPDATE tb_member set name=?, pwd=?, phone=? where memID=?";
 
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getPwd());
 			pstmt.setString(3, vo.getPhone());
-			pstmt.setString(4, vo.getAddress());
-			pstmt.setString(5, vo.getMemID());
+			pstmt.setString(4, vo.getMemID());
 
 			pstmt.executeUpdate();
 
@@ -262,7 +256,6 @@ public class MemberEntity {
 				vo.setMemID(rs.getString("memID"));
 				vo.setName(rs.getString("name"));
 				vo.setPhone(rs.getString("phone"));
-				vo.setAddress(rs.getString("address"));
 				list.add(vo);
 				System.out.println(list.toString());
 			}

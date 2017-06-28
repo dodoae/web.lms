@@ -26,7 +26,6 @@
 
 		customerList = (List) request.getAttribute("customerList");
 		if (customerList == null) {
-			System.out.println("ddddd");
 %>
 <jsp:forward page="/CustomerController?cmd=getAllCustomer">
 	<jsp:param value="<%=startRow%>" name="startRow" />
@@ -57,7 +56,7 @@
 		<div class="form-group">
 			<input type="text" class="form-control" placeholder="Search">
 		</div>
-		<button type="submit" class="btn btn-default">Submit</button>
+		<button type="submit" class="btn btn-default">검색</button>
 	</form>
 	<center>
 		<b>등록된 거래처</b>

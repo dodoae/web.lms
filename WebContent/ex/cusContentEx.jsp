@@ -34,11 +34,13 @@
 <body>
 	<jsp:include page="/common/category.jsp" flush="false" />
 	<center>
-		<form>
+		<form method="post" name="contentForm">
 			<table class="form-group">
 				<tr>
-				<td><label>거래처 코드</label></td><td><input type="text" class="form-control"
-				value="<%=vo.getCusCode()%>" readonly="readonly"></td>
+				<td><label>거래처 코드</label></td>
+				<td><input type="text" class="form-control"
+				value="<%=vo.getCusCode()%>" readonly="readonly">
+				<input type="hidden" name="cusCode" value="<%=vo.getNum()%>"></td>
 				</tr>
 				<tr>
 				<td><label>거래처명</label></td><td><input type="text" class="form-control"
@@ -67,12 +69,10 @@
 				
 				<tr height="50">
 					<td colspan="4" align="center">
-					<input type="button" class="btn btn-success" value="거래처 수정"
-						onclick="document.location.href='cusUpdateEx.jsp?num=<%=vo.getNum()%>&pageNum=<%=pageNum%>'">
+					<input type="submit" class="btn btn-success" id="modify" value="거래처 수정">
 						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" class="btn btn-info" value="거래처 목록"
 						onclick="document.location.href='cusListEx.jsp?pageNum=<%=pageNum%>'">
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" class="btn btn-primary" value="거래처 삭제"
-						onclick="document.location.href='cusDeleteEx.jsp?num=<%=vo.getNum()%>&pageNum=<%=pageNum%>'">
+						&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" class="btn btn-primary" value="거래처 삭제">
 						
 					</td>
 				</tr>

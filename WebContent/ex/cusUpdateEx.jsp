@@ -31,7 +31,7 @@
 	<jsp:include page="/common/category.jsp" flush="false" />
 <center>
 			<b>거래처 수정</b> <br>
-			<form method="post" name="writeform"
+			<form method="post" name="updateForm"
 				action="<%=request.getContextPath() %>/CustomerController?cmd=updateCustomer">
 				<table width="650" border="1" cellspacing="0" cellpadding="0"
 					align="right">
@@ -68,10 +68,10 @@
 							maxlength="50" name="cusAddress" value="<%=vo.getCusAddress()%>"></td>
 					</tr>
 					<tr>
-						<td colspan=2 align="center"><input type="submit" value="글수정">
-							<input type="reset" value="다시작성"> <input type="button"
-							value="목록보기"
-							onclick="document.location.href='cusListEx.jsp?pageNum=<%=pageNum%>'">
+						<td colspan=2 align="center">
+							<input type="submit" value="글수정">
+							<input type="reset" value="다시작성"> 
+							<input type="button" value="목록보기" onclick="document.location.href='cusListEx.jsp?pageNum=<%=pageNum%>'">
 						</td>
 					</tr>
 				</table>

@@ -5,7 +5,6 @@ public class MemberVO {
 	private String name;
 	private String pwd;
 	private String phone;
-	private String address;
 	private boolean loginCheck;
 	private boolean idCheck;	// id 중복체크. true일경우 사용 X
 	private int result;
@@ -13,12 +12,11 @@ public class MemberVO {
 	public MemberVO() {}
 	
 	// 회원가입용
-	public MemberVO(String memID, String pwd, String name, String phone, String address) {
+	public MemberVO(String memID, String pwd, String name, String phone) {
 		this.memID = memID;
 		this.name = name;
 		this.pwd = pwd;
 		this.phone = phone;
-		this.address = address;		
 	}
 	
 	// 로그인용
@@ -69,9 +67,7 @@ public class MemberVO {
 	public String getPhone() {
 		return phone;
 	}
-	public String getAddress() {
-		return address;
-	}
+
 
 	public void setMemID(String memID) {
 		this.memID = memID;
@@ -91,10 +87,6 @@ public class MemberVO {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public void setResult(int result) {

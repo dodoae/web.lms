@@ -63,7 +63,7 @@
 						name="cusAddress"></td>
 				</tr>
 				<tr height="50">
-					<td colspan="4" align="center"><input id="writing"
+					<td colspan="5" align="center"><input id="writing"
 						type="submit" class="btn btn-success" value="거래처 등록"> <input
 						type="reset" class="btn btn-default" value="다시작성"> <input
 						type="button" class="btn btn-info" value="거래처 목록"

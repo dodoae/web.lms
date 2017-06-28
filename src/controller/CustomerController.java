@@ -72,7 +72,7 @@ public class CustomerController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		// Update Button Finish
+		// 거래처 수정
 		private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int num = Integer.parseInt(request.getParameter("num"));
 			String cusCode = (String)request.getParameter("cusCode");
@@ -103,13 +103,13 @@ public class CustomerController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ex/cusUpdateEx.jsp?pageNum="+pageNum+"&num="+num);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ex/cusContentEx.jsp?pageNum="+pageNum+"&num="+num);
 			request.setAttribute("vo", vo);    	
 			request.setAttribute("result", result);
 			dispatcher.forward(request, response); 	
 		}
 
-		// get Board page Article
+		// 거래처 정보 가져오기
 		private void getCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");	
@@ -128,7 +128,7 @@ public class CustomerController extends HttpServlet {
 			dis.forward(request, response); 	
 		}
 
-		// Write Click
+		// 거래처 등록
 		private void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 			System.out.println("ㅇㅇㅇㅇㅇㅇ");
 			int num = Integer.parseInt(request.getParameter("num"));
@@ -150,7 +150,7 @@ public class CustomerController extends HttpServlet {
 			response.sendRedirect("ex/cusListEx.jsp");
 		}
 
-		// get All Board list
+		// 등록된 거래처 보기
 		private void getAllCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int startRow = Integer.parseInt(request.getParameter("startRow"));
 			int endRow = Integer.parseInt(request.getParameter("endRow"));

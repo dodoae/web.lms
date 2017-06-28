@@ -68,9 +68,7 @@ public class MemberController extends HttpServlet {
     		ms.idCheck(vo);
     		if(vo.isIdCheck() == true){
         		out.print("no");
-        	} else {
-        		out.print("yes");
-        	}     		
+        	}   		
     	} catch (Exception e) {
     		e.printStackTrace();
     	} finally {
@@ -122,32 +120,29 @@ public class MemberController extends HttpServlet {
     	String memPwd = request.getParameter("memPwd");
     	String memName = request.getParameter("memName");
     	String memPhone = request.getParameter("memPhone");
-    	String memAddress = request.getParameter("memAddress");
     	PrintWriter out = response.getWriter();
     	JSONObject obj = new JSONObject();
-    	
-    	MemberVO vo = new MemberVO(memID,memPwd,memName,memPhone,memAddress);
+    	System.out.println("join::");
+    	MemberVO vo = new MemberVO(memID,memPwd,memName,memPhone);
     	ms = new MemberService(vo);
     	try {
     		ms.insertMember();
-    		obj.put("idCheck", vo.isIdCheck());
-    		out.print(obj);
+//    		obj.put("idCheck", vo.isIdCheck());
+//    		out.print(obj);
     		
-    		/*if(vo.isIdCheck()==true) {
+    		if(vo.isIdCheck()==true) {
         		System.out.println("join :: no");
         		out.print("no");
         	} else if(vo.isIdCheck()==false) {
         		System.out.println("join :: yes");
         		out.print("yes");
-        	}*/
+        	}
     	} catch (Exception e) {
     		e.printStackTrace();
     	} finally {
     		out.close();
     	}
-    	
-    	
-    	System.out.println("VO :: " + vo.isIdCheck());
+    System.out.println("Controller :: VO :: " + vo.isIdCheck());
     }
     
     // 정보조회
@@ -165,7 +160,6 @@ public class MemberController extends HttpServlet {
     		obj.put("pwd", vo.getPwd());
     		obj.put("name", vo.getName());
     		obj.put("phone", vo.getPhone());
-    		obj.put("address", vo.getAddress());
     		if(vo.getResult()==1) {
         		out.print(obj);
         	} else {
@@ -184,10 +178,9 @@ public class MemberController extends HttpServlet {
     	String memPwd = request.getParameter("memPwd");
     	String memName = request.getParameter("memName");
     	String memPhone = request.getParameter("memPhone");
-    	String memAddress = request.getParameter("memAddress");
     	PrintWriter out = response.getWriter();
     	
-    	MemberVO vo = new MemberVO(memID,memPwd,memName,memPhone,memAddress);
+    	MemberVO vo = new MemberVO(memID,memPwd,memName,memPhone);
     	ms = new MemberService(vo);
     	try {
     		ms.updateMember();
@@ -241,7 +234,6 @@ public class MemberController extends HttpServlet {
 				sObject.put("memID", list.get(i).getMemID());
 				sObject.put("name", list.get(i).getName());
 				sObject.put("phone", list.get(i).getPhone());
-				sObject.put("address", list.get(i).getAddress());
 				jArray.add(sObject); // sObject에 넣은 값을 jArray에 배열로 담음
 			}
 			obj.put("memberlist", jArray);//배열을 넣음
@@ -257,7 +249,7 @@ public class MemberController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		memberProcess(request, response);
+//		memberProcess(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
