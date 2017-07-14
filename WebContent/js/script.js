@@ -85,7 +85,7 @@ $(document).ready(function(){
 					pageNum:pageNum },
 					success:function(data){
 						alert("거래처가 삭제되었습니다.");
-						location.replace('../index.jsp');
+						location.replace('../ex/cusListEx.jsp');
 					}
 			});
 		};
