@@ -50,7 +50,7 @@ public class CustomerEntity {
 			query = "insert into customer_ex(cusCode,cusName,licenseNum,cusRep,cusNumber,cusAddress,reg_date) values(?,?,?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setString(1, vo.getCusCode());
 			pstmt.setString(2, vo.getCusName());
 			pstmt.setString(3, vo.getLicenseNum());
@@ -149,14 +149,14 @@ public class CustomerEntity {
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			
+
 			/*
 			pstmt = con.prepareStatement(
 					"update customer_ex set readcount=readcount+1 where num = ?");
 			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
-			*/
-			
+			 */
+
 			pstmt = con.prepareStatement(
 					"select * from customer_ex where num = ?");
 			pstmt.setInt(1, num);
@@ -254,38 +254,36 @@ public class CustomerEntity {
 
 	public int updateCustomer(CustomerVO vo) throws Exception {
 		ResultSet rs = null;
-		String dbpasswd="";
 		String sql="";
 		int x=-1;
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(
-					"select passwd from customer_ex where num = ?");
+					"select cusCode from customer_ex where num = ?");
 			pstmt.setInt(1, vo.getNum());
 			rs = pstmt.executeQuery();
 			System.out.println("updateCustomer :: getNum : " + vo.getNum());
 
 			if(rs.next()){
-				dbpasswd= rs.getString("passwd"); 
-				if(dbpasswd.equals(vo.getPasswd())){
-					sql="update customer_ex set writer=?,email=?,subject=?,passwd=?";
-					sql+=",content=? where num=?";
-					pstmt = con.prepareStatement(sql);
+				sql="update customer_ex set cusCode=?,cusName=?,cusRep=?,licenseNum=?,cusNumber=?,cusAddress=?";
+				sql+="where num=?";
+				pstmt = con.prepareStatement(sql);
 
-					pstmt.setString(1, vo.getWriter());
-					pstmt.setString(2, vo.getEmail());
-					pstmt.setString(3, vo.getSubject());
-					pstmt.setString(4, vo.getPasswd());
-					pstmt.setString(5, vo.getContent());
-					pstmt.setInt(6, vo.getNum());
-					pstmt.executeUpdate();
-					System.out.println("Entity :: updateCustomer :: "+vo.getWriter());
-					x= 1;	// 수정되면 1
-				}else{
-					System.out.println("비밀번호가 틀렸습니다.");
-					x= 0;	// 아니면 0
-				}
+				pstmt.setString(1, vo.getCusCode());
+				pstmt.setString(2, vo.getCusName());
+				pstmt.setString(3, vo.getCusRep());
+				pstmt.setString(4, vo.getLicenseNum());
+				pstmt.setString(5, vo.getCusNumber());
+				pstmt.setString(6, vo.getCusAddress());
+				pstmt.setInt(7, vo.getNum());
+				pstmt.executeUpdate();
+				System.out.println("Entity :: updateCustomer :: ");
+				x= 1;	// 수정되면 1
+			}else{
+				System.out.println("수정 실패");
+				x= 0;	// 아니면 0
 			}
+
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -315,27 +313,26 @@ public class CustomerEntity {
 	}
 
 	public void deleteCustomer(CustomerVO vo) {
-		String dbpasswd="";
 		vo.setResult(-1); 
+		String cusCode = vo.getCusCode();
 		try {
 			con = ds.getConnection();
 
 			pstmt = con.prepareStatement(
-					"select passwd from customer_ex where num = ?");
+					"select cusCode from customer_ex where num = ?");
 			pstmt.setInt(1, vo.getNum());
 			rs = pstmt.executeQuery();
 
 			if(rs.next()){
-				dbpasswd= rs.getString("passwd"); 
-				if(dbpasswd.equals(vo.getPasswd())){
-					pstmt = con.prepareStatement(
-							"delete from customer_ex where num=?");
-					pstmt.setInt(1, vo.getNum());
-					pstmt.executeUpdate();
-					vo.setResult(1); //글삭제 성공
-				}else
-					vo.setResult(0); //비밀번호 틀림
-			}
+				pstmt = con.prepareStatement(
+						"delete from customer_ex where num=?");
+				pstmt.setInt(1, vo.getNum());
+				pstmt.executeUpdate();
+				vo.setResult(1); //글삭제 성공
+				System.out.println("삭제 됨");
+			} else
+				vo.setResult(0); //비밀번호 틀림
+
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {

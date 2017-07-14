@@ -6,11 +6,9 @@
 <%!int pageSize = 10;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
 <%
-	/*
 	String memID = (String) session.getAttribute("MEMBERID");
 	boolean login = memID == null ? false : true;
 	if (login) {
-	*/
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum == null) {
 			pageNum = "1";
@@ -49,14 +47,16 @@
 <body>
 	<jsp:include page="/common/category.jsp" flush="false" />
 	<form class="navbar-form navbar-left" role="search">
-		<a href="cusWriteEx.jsp"><input type="button" class="btn btn-success" value="거래처 등록"></a> 
-		<a href="cusDeleteEx.jsp"><input type="button" class="btn btn-primary" value="거래처 삭제" id="cusDelete" ></a>
+		<a href="cusWriteEx.jsp"><input type="button" class="btn btn-info"
+			value="거래처 등록"></a> <input type="button" class="btn btn-info"
+			value="거래처 수정" id="cusUpdate"></a> <a href="cusDeleteEx.jsp"><input
+			type="button" class="btn btn-info" value="거래처 삭제" id="cusDelete"></a>
 	</form>
 	<form class="navbar-form navbar-right" role="search">
 		<div class="form-group">
 			<input type="text" class="form-control" placeholder="Search">
 		</div>
-		<button type="submit" class="btn btn-default">검색</button>
+		<button type="submit" class="btn btn-default">Submit</button>
 	</form>
 	<center>
 		<b>등록된 거래처</b>
@@ -74,7 +74,8 @@
 		<table class="table table-striped" cellpadding="0" cellspacing="0"
 			align="center">
 			<tr height="30">
-				<td align="center" width="10"><input type="checkbox" name="cusAllCheck" id="cusAllCheck"></td>
+				<td align="center" width="10"><input type="checkbox"
+					name="cusAllCheck" id="cusAllCheck"></td>
 				<td align="center" width="50">거래처 코드</td>
 				<td align="center" width="50">거래처명</td>
 				<td align="center" width="80">사업자 번호</td>
@@ -88,8 +89,10 @@
 							CustomerVO vo = (CustomerVO) customerList.get(i);
 			%>
 			<tr height="30">
-				<td align="center" width="10"><input type="checkbox" id="cusCheck"></td>
-				<td align="center" width="50"><a href="<%=request.getContextPath()%>/ex/cusContentEx.jsp?num=<%=vo.getNum()%>&pageNum=<%=currentPage%>"><%=vo.getCusCode()%></a></td>
+				<td align="center" width="10"><input type="checkbox"
+					id="cusCheck"></td>
+				<td align="center" width="50"><a
+					href="<%=request.getContextPath()%>/ex/cusContentEx.jsp?num=<%=vo.getNum()%>&pageNum=<%=currentPage%>"><%=vo.getCusCode()%></a></td>
 				<td align="center" width="50"><%=vo.getCusName()%></a></td>
 				<td align="center" width="80"><%=vo.getLicenseNum()%></td>
 				<td align="center" width="50"><%=vo.getCusRep()%></td>
@@ -140,14 +143,12 @@
 </body>
 </html>
 <%
-	/*
 	} else {
-	*/
 %>
-<!-- 
+
 <script>
 	alert("로그인을 하세요.");
 	document.location.href = "../index.jsp";
 </script>
- -->
-<% // } %>
+
+<% } %>

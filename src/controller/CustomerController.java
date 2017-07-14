@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import service.CustomerService;
 import vo.BoardVO;
@@ -58,7 +59,6 @@ public class CustomerController extends HttpServlet {
 			String cusCode = (String)request.getParameter("cusCode");
 			String pageNum = (String)request.getParameter("pageNum");	
 			CustomerVO vo = new CustomerVO(num, cusCode);
-
 			try {
 				cs.deleteCustomer(vo);
 				if (vo.getResult()==1){
@@ -67,12 +67,12 @@ public class CustomerController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ex/cusListEx.jsp");
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/ex/cusListEx.jsp");
 			request.setAttribute("pageNum", pageNum);
-			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response);
 		}
 
-		// 거래처 수정
+		// Update Button Finish
 		private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int num = Integer.parseInt(request.getParameter("num"));
 			String cusCode = (String)request.getParameter("cusCode");
@@ -81,9 +81,9 @@ public class CustomerController extends HttpServlet {
 			String cusRep = (String)request.getParameter("cusRep");
 			String cusNumber = (String)request.getParameter("cusNumber");
 			String cusAddress = (String)request.getParameter("cusAddress");
-			Timestamp reg_date = new Timestamp(System.currentTimeMillis());
-			
-			CustomerVO vo = new CustomerVO(num, cusCode, cusName, licenseNum, cusRep, cusNumber, cusAddress, reg_date);	
+			//Timestamp reg_date = new Timestamp(System.currentTimeMillis());
+			System.out.println("Controller:updateCustomer");
+			CustomerVO vo = new CustomerVO(num, cusCode, cusName, licenseNum, cusRep, cusNumber, cusAddress);	
 			try {
 				cs.updateCustomer(vo);
 			} catch (Exception e) {
@@ -103,13 +103,13 @@ public class CustomerController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ex/cusContentEx.jsp?pageNum="+pageNum+"&num="+num);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ex/cusUpdateEx.jsp?pageNum="+pageNum+"&num="+num);
 			request.setAttribute("vo", vo);    	
 			request.setAttribute("result", result);
 			dispatcher.forward(request, response); 	
 		}
 
-		// 거래처 정보 가져오기
+		// get Board page Article
 		private void getCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");	
@@ -128,7 +128,7 @@ public class CustomerController extends HttpServlet {
 			dis.forward(request, response); 	
 		}
 
-		// 거래처 등록
+		// Write Click
 		private void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 			System.out.println("ㅇㅇㅇㅇㅇㅇ");
 			int num = Integer.parseInt(request.getParameter("num"));
@@ -150,7 +150,7 @@ public class CustomerController extends HttpServlet {
 			response.sendRedirect("ex/cusListEx.jsp");
 		}
 
-		// 등록된 거래처 보기
+		// get All Board list
 		private void getAllCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int startRow = Integer.parseInt(request.getParameter("startRow"));
 			int endRow = Integer.parseInt(request.getParameter("endRow"));

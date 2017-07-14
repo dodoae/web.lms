@@ -11,6 +11,7 @@ public class CustomerVO {
     private String cusNumber;	// 거래처 전화번호
     private String cusAddress;	// 거래처 주소
     private Timestamp reg_date;	// 입력한 시간
+    private Timestamp update_reg_date;	// 입력한 시간
     private int result;
     
     public CustomerVO(){}
@@ -19,6 +20,8 @@ public class CustomerVO {
 		this.num = num;
 		this.cusCode = cusCode;
 	}
+	
+	// write
 	public CustomerVO(int num, String cusCode, String cusName, String licenseNum, String cusRep, String cusNumber, String cusAddress, Timestamp reg_date) {
 		this.num=num;
 		this.cusCode = cusCode;
@@ -32,6 +35,19 @@ public class CustomerVO {
 	public CustomerVO(int num) {
 		this.num = num;
 	}
+	
+	// update
+	public CustomerVO(int num, String cusCode, String cusName, String licenseNum, String cusRep, String cusNumber,
+			String cusAddress) {
+		this.num=num;
+		this.cusCode = cusCode;
+		this.cusName = cusName;
+		this.licenseNum = licenseNum;
+		this.cusRep = cusRep;
+		this.cusNumber = cusNumber;
+		this.cusAddress = cusAddress;
+	}
+
 	public int getNum() {
 		return num;
 	}
@@ -88,5 +104,14 @@ public class CustomerVO {
 	}
 	public void setResult(int result) {
 		this.result = result;
+	}
+
+	public Timestamp getUpdate_reg_date() {
+		return update_reg_date;
+	}
+
+	public void setUpdate_reg_date(Timestamp update_reg_date) {
+		this.update_reg_date = update_reg_date;
 	}   
+	
 }
