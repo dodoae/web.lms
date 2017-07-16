@@ -9,6 +9,20 @@ create table customer_ex (
 	reg_date   datetime,
 	primary key (num)
 );
+
+create table mvc_board(
+bId int primary key auto_increment,
+bName varchar(20),
+bTitle varchar(100),
+bContent varchar(200),
+bDate datetime,
+bHit int default 0,
+bGroup int,
+bStep int,
+bIndent int
+);
+
+drop table mvc_board
 select *from customer_ex
 select max(num) from customer_ex
 
@@ -30,6 +44,7 @@ create table board (
     ip   varchar(20),
 	primary key (num)
 );
+
 
 drop table customer_ex
 
