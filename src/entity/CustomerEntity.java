@@ -99,7 +99,8 @@ public class CustomerEntity {
 			pstmt.setInt(1, start-1);
 			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
-
+			System.out.println("entity:: start : " + start);
+			System.out.println("entity:: end : " + end);
 			if (rs.next()) {
 
 				do{
@@ -143,20 +144,12 @@ public class CustomerEntity {
 		return customerList;
 	}
 
-	// list에서 글을 눌렀을 때 게시판 내용을 가져옴
+	// list에서 글을 눌렀을 때 내용을 가져옴
 	public CustomerVO getCustomer(CustomerVO vo) throws Exception {
 		int num = vo.getNum();
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-
-			/*
-			pstmt = con.prepareStatement(
-					"update customer_ex set readcount=readcount+1 where num = ?");
-			pstmt.setInt(1, num);
-			pstmt.executeUpdate();
-			 */
-
 			pstmt = con.prepareStatement(
 					"select * from customer_ex where num = ?");
 			pstmt.setInt(1, num);
@@ -201,7 +194,7 @@ public class CustomerEntity {
 		return vo;
 	}
 
-	// 
+	/* 
 	public CustomerVO updateGetCustomer(CustomerVO vo) throws Exception {
 		int num = vo.getNum();
 		try {
@@ -251,7 +244,8 @@ public class CustomerEntity {
 		}
 		return vo;
 	}
-
+	*/
+	
 	public int updateCustomer(CustomerVO vo) throws Exception {
 		ResultSet rs = null;
 		String sql="";
@@ -358,5 +352,46 @@ public class CustomerEntity {
 				}
 			}
 		}
+	}
+	
+	// Customer 등록된 개수 count
+	public int getCustomerCount() {
+		int x=0;
+		try {
+			con = ds.getConnection();
+
+			pstmt = con.prepareStatement("select count(*) from customer_ex");
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				x= rs.getInt(1);
+			}
+			System.out.println("entity :: count : " + x);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try { 
+					rs.close(); 
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) { 
+				try { 
+					pstmt.close(); 
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try { 
+					con.close(); 
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return x;
 	}
 }

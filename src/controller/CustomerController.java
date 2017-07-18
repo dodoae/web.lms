@@ -10,10 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import service.CustomerService;
-import vo.BoardVO;
 import vo.CustomerVO;
 
 /**
@@ -44,9 +42,9 @@ public class CustomerController extends HttpServlet {
 			getAllCustomer(request, response);
 		} else if(cmd.equals("getCustomer")) {
 			getCustomer(request, response);
-		} else if(cmd.equals("updateGetCustomer")) {
+		} /* else if(cmd.equals("updateGetCustomer")) {
 			updateGetCustomer(request, response);
-		} else if(cmd.equals("updateCustomer")) {
+		} */else if(cmd.equals("updateCustomer")) {
 			updateCustomer(request, response);
 		} else if(cmd.equals("deleteCustomer")){
 			deleteCustomer(request, response);    		
@@ -63,13 +61,15 @@ public class CustomerController extends HttpServlet {
 			cs.deleteCustomer(vo);
 			if (vo.getResult()==1){
 				System.out.println("거래처 삭제 성공");
+			} else {
+				System.out.println("거래처 삭제 실패");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//			RequestDispatcher dispatcher = request.getRequestDispatcher("/ex/cusListEx.jsp");
-		//			request.setAttribute("pageNum", pageNum);
-		//			dispatcher.forward(request, response);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/ex/cusListEx.jsp");
+		request.setAttribute("pageNum", pageNum);
+//		dispatcher.forward(request, response);
 	}
 
 	// Update Button Finish
@@ -88,10 +88,9 @@ public class CustomerController extends HttpServlet {
 			cs.updateCustomer(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		response.sendRedirect("ex/cusListEx.jsp");
+		} 
 	}
-
+/*
 	// Update Button Click
 	private void updateGetCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int num = Integer.parseInt(request.getParameter("num"));
@@ -108,8 +107,8 @@ public class CustomerController extends HttpServlet {
 		request.setAttribute("result", result);
 		dispatcher.forward(request, response); 	
 	}
-
-	// get Board page Article
+*/
+	// 선택한 거래처 정보를 가져옴.
 	private void getCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int num = Integer.parseInt(request.getParameter("num"));
 		String pageNum = request.getParameter("pageNum");	
@@ -128,9 +127,8 @@ public class CustomerController extends HttpServlet {
 		dis.forward(request, response); 	
 	}
 
-	// Write Click
+	// 거래처 등록
 	private void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		System.out.println("ㅇㅇㅇㅇㅇㅇ");
 		int num = Integer.parseInt(request.getParameter("num"));
 		String cusCode = (String)request.getParameter("cusCode");
 		String cusName = (String)request.getParameter("cusName");
@@ -150,21 +148,22 @@ public class CustomerController extends HttpServlet {
 		response.sendRedirect("ex/cusListEx.jsp");
 	}
 
-	// get All Board list
+	// get All Customer list
 	private void getAllCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int count = 0;
 		int startRow = Integer.parseInt(request.getParameter("startRow"));
 		int endRow = Integer.parseInt(request.getParameter("endRow"));
 		System.out.println("Controller :: getAllCustomer :: ");
-
 		List customerList = null;
 		System.out.println("CustomerController :: getAllCustomer ");
 		try {
+			count = cs.getCustomerCount();
 			customerList = cs.getArticles(startRow, endRow);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		RequestDispatcher dis = request.getRequestDispatcher("ex/cusListEx.jsp?customerList"+customerList);
-
+		request.setAttribute("count", count);
 		request.setAttribute("customerList", customerList);
 		dis.forward(request, response);
 	}

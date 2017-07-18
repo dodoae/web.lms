@@ -23,13 +23,17 @@ public class CustomerService {
 	public CustomerVO getCustomer(CustomerVO vo) throws Exception {
 		return ce.getCustomer(vo);
 	}
-	public CustomerVO updateGetCustomer(CustomerVO vo) throws Exception {
+	/*public CustomerVO updateGetCustomer(CustomerVO vo) throws Exception {
 		return ce.updateGetCustomer(vo);
-	}
+	}*/
 	public void updateCustomer(CustomerVO vo) throws Exception {
 		ce.updateCustomer(vo);
 	}
 	public void deleteCustomer(CustomerVO vo) {
 		ce.deleteCustomer(vo);
+	}
+
+	public int getCustomerCount() {
+		return ce.getCustomerCount();
 	}
 }

@@ -43,7 +43,7 @@ $(document).ready(function(){
 	});
 
 	// 거래처 수정
-	$("#updateContent").click(function(){
+	/*$("#updateContent").click(function(){
 		var result=confirm('거래처를 수정 하시겠습니까?');
 		var num=$("#num").val();
 		var cusCode=$("#cusCode").val();
@@ -65,24 +65,36 @@ $(document).ready(function(){
 				},
 				success:function(data) {
 					alert("거래처 정보가 수정되었습니다.");
-					location.replace('../index.jsp');
+					location.replace('../ex/cusListEx.jsp');
+				}
+			});
+		}
+	});*/
+	
+	$("#updateContent").click(function(){
+		var result=confirm('거래처 정보를 수정 하시겠습니까?');
+		var updateCus=$('form').serialize();
+		console.log(updateCus);
+		if(result) {
+			$.ajax({type:"POST",
+				url:"../CustomerController?cmd=updateCustomer",
+				data:updateCus,
+				success:function(data) {
+					alert("거래처 정보가 수정되었습니다.");
+					location.replace('../ex/cusListEx.jsp');
 				}
 			});
 		}
 	});
 
-	// 거래처 삭제dd
+	// 거래처 삭제
 	$("#deleteCus").click(function(){
 		var result=confirm('거래처를 삭제 하시겠습니까?');
-		var cusCode=$("#cusCode").val();
-		var num=$("#num").val();
-		var pageNum=$("pageNum").val();
+		var updateCus=$('form').serialize();
 		if(result) {
 			$.ajax({type:"POST",
 				url:"../CustomerController?cmd=deleteCustomer",
-				data:{num:num,
-					cusCode:cusCode,
-					pageNum:pageNum },
+				data:updateCus,
 					success:function(data){
 						alert("거래처가 삭제되었습니다.");
 						location.replace('../ex/cusListEx.jsp');
