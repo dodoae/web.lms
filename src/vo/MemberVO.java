@@ -12,7 +12,7 @@ public class MemberVO {
 	public MemberVO() {}
 	
 	// 회원가입용
-	public MemberVO(String memID, String pwd, String name, String phone) {
+	public MemberVO(String memID, String name, String pwd, String phone) {
 		this.memID = memID;
 		this.name = name;
 		this.pwd = pwd;

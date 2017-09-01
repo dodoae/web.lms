@@ -83,9 +83,8 @@ public class MemberController extends HttpServlet {
     protected void login(HttpServletRequest request, HttpServletResponse response) throws IOException{
     	String memID = request.getParameter("memID");
     	String memPwd = request.getParameter("memPwd");
-    	String memName = request.getParameter("name");
     	PrintWriter out = response.getWriter();
-    	MemberVO vo = new MemberVO(memID, memPwd, memName);
+    	MemberVO vo = new MemberVO(memID, memPwd);
     	ms = new MemberService(vo);
     	try{
     		ms.loginMember();
@@ -93,9 +92,7 @@ public class MemberController extends HttpServlet {
         		request.getSession().setAttribute("MEMBERID", memID);
         		System.out.println("cont :: "+memID);
         		request.getSession().setAttribute("memName", vo.getName());
-        		out.print("yes");
-        	} else {
-        		out.print("no");
+        		out.print(vo.getName());
         	}
     	} catch(Exception e) {
     		e.printStackTrace();
@@ -116,27 +113,27 @@ public class MemberController extends HttpServlet {
     
     // 회원가입
     protected void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+    	System.out.println("join :: controller");
     	String memID = request.getParameter("memID");
-    	String memPwd = request.getParameter("memPwd");
     	String memName = request.getParameter("memName");
+    	String memPwd = request.getParameter("memPwd");
     	String memPhone = request.getParameter("memPhone");
     	PrintWriter out = response.getWriter();
     	JSONObject obj = new JSONObject();
-    	System.out.println("join::");
-    	MemberVO vo = new MemberVO(memID,memPwd,memName,memPhone);
+    	MemberVO vo = new MemberVO(memID,memName,memPwd,memPhone);
     	ms = new MemberService(vo);
     	try {
     		ms.insertMember();
 //    		obj.put("idCheck", vo.isIdCheck());
 //    		out.print(obj);
-    		
+    		/*
     		if(vo.isIdCheck()==true) {
         		System.out.println("join :: no");
         		out.print("no");
         	} else if(vo.isIdCheck()==false) {
         		System.out.println("join :: yes");
         		out.print("yes");
-        	}
+        	}*/
     	} catch (Exception e) {
     		e.printStackTrace();
     	} finally {

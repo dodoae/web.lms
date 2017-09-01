@@ -3,7 +3,6 @@ $(document).ready(function(){
 	$("#adminLogin").click(function() {
 		var logID = $("#adID").val();
 		var logPwd = $("#adPass").val();
-		var logName;
 		if(logID==""){
 			alert("ID를 입력해주세요.");
 		} else if(logPwd==""){
@@ -12,11 +11,10 @@ $(document).ready(function(){
 			$.ajax({type:"POST",
 				url:"memberController?cmd=login",
 				data:{"memID":logID,
-					"memPwd":logPwd,
-					"name":logName},				
+					"memPwd":logPwd},				
 					success:function(data){
-						if(data=="yes") {
-							alert("로그인 되었습니다.");
+						if(data!=null) {
+							alert(data+"님 환영합니다.");
 							location.replace('ex/cusListEx.jsp');
 						} else {
 							alert("아이디와 비밀번호를 확인해주세요.");
@@ -42,6 +40,43 @@ $(document).ready(function(){
 		};
 	});
 
+	// 회원가입
+	$("#join").click(function(){
+		var memID=$("#memID").val();
+		var memPwd=$("#memPwd").val();
+		var memName=$("#memName").val();
+		var memPhone=$("#memPhone").val();
+		if(memID==""){
+			alert("ID를 입력해주세요");
+		}else if(memPwd==""){
+			alert("비밀번호를 입력해주세요.");
+		}else if(memName==""){
+			alert("이름을 입력해주세요.");
+		}else if(memPhone==""){
+			alert("핸드폰 번호를 입력해주세요.");
+		}else{
+			$.ajax({type:"POST",
+				url:"memberController?cmd=join",
+				data:{"memID":memID,
+					"memName":memName,
+					"memPwd":memPwd,
+					"memPhone":memPhone
+					},				
+					success:function(data){
+						var join=JSON.parse(obj).idCheck;
+						if($.trim(join)=="false") {
+							alert("회원가입이 완료되었습니다.");
+							location.replace('../index.jsp');
+						} else {
+							alert("회원가입 불가. 관리자에 문의하세요.");
+						}
+					}, error:function(request,status,error){
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+			});
+		}
+	});
+	
 	// 거래처 수정
 	/*$("#updateContent").click(function(){
 		var result=confirm('거래처를 수정 하시겠습니까?');
@@ -98,7 +133,7 @@ $(document).ready(function(){
 					success:function(data){
 						alert("거래처가 삭제되었습니다.");
 						location.replace('../ex/cusListEx.jsp');
-					}
+					} 
 			});
 		};
 	});

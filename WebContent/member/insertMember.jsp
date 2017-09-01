@@ -34,7 +34,7 @@
 
 								<div class="form-group" align="right">
 									<input type="checkbox" id="idcheckbox"> <input
-										type="button" id="idCheck" value="ID체크"> <input
+										type="button" id="idCheck" value="중복체크"> <input
 										type="hidden" id="idcheck" value="0">
 								</div>
 								<!-- 

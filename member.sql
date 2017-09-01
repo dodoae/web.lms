@@ -4,7 +4,8 @@ create table tb_member(
 	memID varchar(20) not null,
 	name varchar(30) not null,
 	pwd varchar(20) not null,
-	phone varchar(20) not null
+	phone varchar(20) not null,
+	primary key(memID)
 )
 
 drop table tb_member
